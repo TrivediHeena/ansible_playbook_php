@@ -1,0 +1,25 @@
+--- # Demo Loop
+- name: LoopDemo
+  connection: ssh
+  hosts: mydemogrp #webservergrp
+  become: yes
+  tasks:
+    - name: "installing"
+      apt: name={{ item }} state=present
+      with_items:
+        # - vsftpd
+        - apache2
+        - tree
+
+- name: LoopDemo1
+  connection: ssh
+  hosts: mydemogrp
+  become: yes
+  vars:
+    pkgs:
+      - apache2
+      - tree
+  tasks:
+    - name: "installing packages"
+      apt: name={{ item }} state=present
+      with_items: "{{ pkgs }}"
