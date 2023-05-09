@@ -1,0 +1,13 @@
+--- # Install Apache
+- name: condition demo
+  hosts: mydemogrp
+  user: ansible1
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install apache on debian family os
+      command: apt-get install apache2 -y
+      when: ansible_os_family == "Debian"
+    - name: install apache on redhat family os
+      command: yum install httpd -y
+      when: ansible_os_family == "RedHat"

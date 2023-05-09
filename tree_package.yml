@@ -1,0 +1,16 @@
+--- # Install Tree package
+- hosts: mydemogrp
+  user: ansible1
+  connection: ssh
+  become: yes
+    #become_user: ansible1
+    #remote_user: ansible1
+    #become_method: sudo
+  vars:
+    pckNm: tree
+  tasks:
+    - name: install tree on node
+      #action: yum name='{{pckNm}}' state=installed
+      #apt: state=latest
+      #action: apt name='{{pckNm}}' state=present
+      apt: name='{{pckNm}}' state=present
